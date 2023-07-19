@@ -1,12 +1,10 @@
 package com.example.userssp
 
-import android.content.Context
 import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.userssp.databinding.ActivityMainBinding
@@ -29,7 +27,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
       val preferences = getPreferences(MODE_PRIVATE)
       val isFirstTime = preferences.getBoolean(getString(R.string.sp_first_time), true)
       Log.i(
-         "SP", "${getString(R.string.sp_first_time)} = ${isFirstTime}"
+         "SP", "${getString(R.string.sp_first_time)} = $isFirstTime"
       ) // Log.i("Nombre ingresado", "${getString(R.string.sp_username)} = ${preferences.getString(getString(R.string.sp_username), "NA")}")
       /*
 
@@ -39,40 +37,60 @@ class MainActivity : AppCompatActivity(), OnClickListener {
             R.layout.dialog_register, null
          ) //traigo la vista de la ventana de registro
 
-         /*
-
-          */ //Este metodo sirve para mostrar mensajes
+         //Este metodo sirve para mostrar mensajes
          //En este caso se mostrara siempre y cuando no se aprite el boton que deice registrar (dialog_confirm)
-         MaterialAlertDialogBuilder(this).setTitle(R.string.dialog_tittle)
-            .setView(dialogView) //cargo la vista de la ventana de registro
-            .setCancelable(false) //esto va a decir que no se puede cancelar nunca el dialogo
-            //en la parte de i-> se le va a accignar la accion
-            .setPositiveButton(R.string.dialog_confirm) { dialogInterface, i -> //cuando se aprite el boton la variale (isFirstTime) va a cambiar y no se va a mostrar mas el mensaje
-               val userName =
-                  dialogView.findViewById<TextInputEditText>(R.id.etUsername).text.toString() // guardo en una variable lo que el usuario ingreso como su nombre
-               if (userName.isEmpty()) {
-                  Toast.makeText(this, "INGRESAR NOMBRE POR FAVOOOORR", Toast.LENGTH_SHORT).show()
+         /*  MaterialAlertDialogBuilder(this)
+              .setTitle(R.string.dialog_tittle)
+              .setView(dialogView) //cargo la vista de la ventana de registro
+              .setCancelable(false) //esto va a decir que no se puede cancelar nunca el dialogo
+              //en la parte de i-> se le va a accignar la accion
+              .setPositiveButton(R.string.dialog_confirm) { _, _ -> //cuando se aprite el boton la variale (isFirstTime) va a cambiar y no se va a mostrar mas el mensaje
+                 val userName =
+                    dialogView.findViewById<TextInputEditText>(R.id.etUsername).text.toString() // guardo en una variable lo que el usuario ingreso como su nombre
 
-               } else {
-                  with(preferences.edit()) {
-                     putBoolean(
-                        getString(R.string.sp_first_time), false
-                     ) //cargo los datos a guardar
-                     putString(
-                        getString(R.string.sp_username), userName
-                     ) //cargo los datos a guardar
-                        .apply() //esto hac que la insercion se realice en segundo plano
-                  }
-                  Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT)
-                     .show() //mensake para mostrar cuando el usuario ingreso su nombre
-               }
+                 with(preferences.edit()) {
+                    putBoolean(
+                       getString(R.string.sp_first_time), false
+                    ) //cargo los datos a guardar
+                    putString(
+                       getString(R.string.sp_username), userName
+                    ) //cargo los datos a guardar
+                       .apply() //esto hac que la insercion se realice en segundo plano
+                 }
+                 Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT)
+                    .show() //mensake para mostrar cuando el usuario ingreso su nombre
 
 
-            }.setNegativeButton("Ingresar como inivitado") { dialogInterface, i ->
-               Toast.makeText(this, "Usted ingreso como un invitado", Toast.LENGTH_SHORT).show()
+              }.setNeutralButton("Ingresar como inivitado") { dialogInterface, _ ->
+                 Toast.makeText(this, "Usted ingreso como un invitado", Toast.LENGTH_SHORT).show()
+              }
+
+              .show()*/
+         /*
+         Esto es muy parecido a lo de arriba pero se
+         guardae le dialogo en una variable para poder cerrarlo de forma manual
+          */
+         val dialog =
+            MaterialAlertDialogBuilder(this).setTitle(R.string.dialog_tittle).setView(dialogView)
+               .setCancelable(false).setPositiveButton(R.string.dialog_confirm) { _, _ -> }.create()
+         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
+            val userName =
+               dialogView.findViewById<TextInputEditText>(R.id.etUsername).text.toString()
+
+            with(preferences.edit()) {
+               putBoolean(
+                  getString(R.string.sp_first_time), false
+               )
+               putString(
+                  getString(R.string.sp_username), userName
+               ).apply()
             }
+            Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
 
-            .show()
+         }
+         dialog.show()
+
+
       } else {
          val username = preferences.getString(
             getString(R.string.sp_username), getString(R.string.hint_username)
