@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ScrollingActivity">
+
+    <include
+        android:id="@+id/content"
+        layout="@layout/content_scrolling"
+        app:layout_anchor="@+id/content"
+        app:layout_anchorGravity="center" />
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottom_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:navigationIcon="@drawable/ic_menu"
+        app:menu="@menu/menu_scrolling"
+        app:hideOnScroll="true"
+        app:fabAnimationMode="scale"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_task"
+        android:contentDescription="@string/add_task"
+        app:layout_anchor="@id/bottom_app_bar"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

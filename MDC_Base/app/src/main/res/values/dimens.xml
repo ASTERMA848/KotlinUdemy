@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="car_img_size">88dp</dimen>
+    <dimen name="common_pading">8dp</dimen>
+    <dimen name="common_pading_default">16dp</dimen>
+
+</resources>

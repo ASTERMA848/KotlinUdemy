@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginHorizontal="15dp"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_margin="10dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/imgPhoto"
+        android:layout_width="@dimen/car_img_size"
+        android:layout_height="@dimen/car_img_size"
+        android:layout_marginStart="16dp"
+
+        android:contentDescription="@string/descripcion_userPhoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="?attr/textAppearanceCaption"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="left|center"
+        android:textAppearance="?attr/textAppearanceSubtitle2"
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvOrder"
+        app:layout_constraintStart_toEndOf="@id/imgPhoto"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Nombre de la persona" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#9fa6a4"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

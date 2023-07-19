@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Hello Kotlin</string>
+    <string name="tts_active">Disponible para hablar</string>
+    <string name="tts_no_active">No disponible</string>
+    <string name="tts_cambio">Introducir un texto</string>
+    <string name="hint_mensaje">Ingresar texto</string>
+    <string name="button_play">Play</string>
+    <string name="primer_mensaje">Hello Kotlin :) !</string>
+</resources>

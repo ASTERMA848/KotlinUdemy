@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ScrollingActivity"
+    tools:showIn="@layout/activity_scrolling">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="232dp"
+            android:layout_marginStart="@dimen/common_pading"
+            android:layout_marginTop="@dimen/common_pading"
+            android:layout_marginEnd="@dimen/common_pading"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardElevation="50dp">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="258dp"
+                android:paddingStart="@dimen/common_pading_default"
+                android:paddingTop="@dimen/common_pading_default"
+                android:paddingEnd="@dimen/common_pading_default">
+
+                <ImageView
+                    android:id="@+id/imgCard"
+                    android:layout_width="@dimen/car_img_size"
+                    android:layout_height="@dimen/car_img_size"
+                    android:layout_marginTop="12dp"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="108dp"
+                    android:text="Comprar"
+                    app:icon="@drawable/ic_carrito"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgCard"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/scape"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volver"
+                    app:icon="@drawable/icon_flecha"
+                    app:layout_constraintEnd_toEndOf="@+id/button"
+                    app:layout_constraintTop_toBottomOf="@+id/button" />
+
+                <TextView
+                    android:id="@+id/titulo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="Titulo de la app"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    app:layout_constraintStart_toEndOf="@+id/imgCard"
+                    tools:layout_editor_absoluteY="28dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_carrito"
+                tools:layout_editor_absoluteX="181dp"
+                tools:layout_editor_absoluteY="0dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
