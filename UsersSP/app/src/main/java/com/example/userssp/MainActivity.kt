@@ -13,23 +13,28 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity(), OnClickListener {
+     /*
+     ----------------------------------------------------------------
+     Creao variables con la palabra lateinit, diciendo que se le va a asignar un valor despues
+     ----------------------------------------------------------------
+      */
      private lateinit var userAdapter: UserAdapter
-     private lateinit var linearLayaoutManager: RecyclerView.LayoutManager
-     private lateinit var binding: ActivityMainBinding
+     private lateinit var linearLayaoutManager: RecyclerView.LayoutManager //RecyclerView = componente de interfaz usado para listar elementos
+     private lateinit var binding: ActivityMainBinding //ActivityMainBinding = contiene las referencias a todos los elementos de la interfaz
 
      override fun onCreate(savedInstanceState: Bundle?) {
           super.onCreate(savedInstanceState)
-          binding = ActivityMainBinding.inflate(layoutInflater)
+          binding =
+               ActivityMainBinding.inflate(layoutInflater) //inflate = trae los elementos de la interfaz de usuario definidos en el archivo XML sean representados y manipulados programáticamente en el código de la aplicación.
           setContentView(binding.root)
 
           /*
            //SharedPreferences (forma de almacenar datos)
            */
           val preferences = getPreferences(MODE_PRIVATE)
-          val isFirstTime = preferences.getBoolean(getString(R.string.sp_first_time), true)
-          Log.i(
-               "SP", "${getString(R.string.sp_first_time)} = $isFirstTime"
-          ) // Log.i("Nombre ingresado", "${getString(R.string.sp_username)} = ${preferences.getString(getString(R.string.sp_username), "NA")}")
+          val isFirstTime = preferences.getBoolean(getString(R.string.sp_first_time), true) //esta es la variable que se va a guardar internamente gracias al SharedPreferences || se le da un valor true hasta que el usuario ingrese su nombre (vendria a ser laprimera vez que entre a la app)
+          Log.i("SP", "${getString(R.string.sp_first_time)} = $isFirstTime")
+
 
           if (isFirstTime) {
                val dialogView = layoutInflater.inflate(
@@ -72,25 +77,30 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
 
                /*
+               ----------------------------------------------------------------
+               MaterialAlertDialogBuilder permite mostrar cuadros de dialogo (ventanas flotantes)
+               ----------------------------------------------------------------
                ESTA PARTE ES LO MISMO DE ARRIBA NADA MAS QUE AGREGA LA VALIDACION DEL NOMBRE
                 */
-               val dialog = MaterialAlertDialogBuilder(this).setTitle(R.string.dialog_tittle)
-                    .setView(dialogView).setCancelable(false)
-                    .setPositiveButton(R.string.dialog_confirm) { _, _ -> }
-                    .setNeutralButton("Ingresar como inivitado") { dialogInterface, _ ->
-                         Toast.makeText(this, "Usted ingreso como un invitado", Toast.LENGTH_SHORT)
-                              .show()
-                    }.create()
-               dialog.show()
+               val dialog = // se va a guardar la ventana flotante en una variable para que antes de enviarla pueda ser manipulada
+                    MaterialAlertDialogBuilder(this).setTitle(R.string.dialog_tittle) //le doy titulo
+                         .setView(dialogView).setCancelable(false) //cargo la vista (ingresar name)
+                         .setPositiveButton(R.string.dialog_confirm) { _, _ -> }
+                         .setNeutralButton("Ingresar como inivitado") { dialogInterface, _ ->
+                              Toast.makeText( //Toast= mensajes flotantes
+                                   this, "Usted ingreso como un invitado", Toast.LENGTH_SHORT
+                              ).show() //show= hace que se muesrtre la linea de Toast
+                         }.create()
+               dialog.show() // muesto la variable en donde se guardo la vista
                dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener {
                     val userName =
-                         dialogView.findViewById<TextInputEditText>(R.id.etUsername).text.toString()
+                         dialogView.findViewById<TextInputEditText>(R.id.etUsername).text.toString() //traigo lo ingresado y lo guardo en una variable
 
-                    if (userName.isBlank()) {
+                    if (userName.isBlank()) { //isBlank() es parecido al idEmpty()
                          Toast.makeText(this, "Nombre invalido", Toast.LENGTH_SHORT).show()
                     } else {
                          with(preferences.edit()) {
-                              putBoolean(getString(R.string.sp_first_time), false)
+                              putBoolean(getString(R.string.sp_first_time), false) //al ingresar nu nombre valido la variable del SharedPreferences pasa a false
                               putString(getString(R.string.sp_username), userName).apply()
                          }
                          Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show()
@@ -100,7 +110,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                }
 
 
-          } else {
+          } else { //en este es por si isFirstTime ya tiene un valor false (que ya se a ingresado a la app)
                val username = preferences.getString(
                     getString(R.string.sp_username), getString(R.string.hint_username)
                )
@@ -135,6 +145,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                })
           swipeHelper.attachToRecyclerView(binding.recyclerView)
      }
+
      /*
               -----------------------------
               METODO PARA AGREGAR OBJETOS A UNA LISTA MUTABLE

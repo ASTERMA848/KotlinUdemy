@@ -10,10 +10,15 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.userssp.databinding.ItemUserAltBinding
 import com.example.userssp.databinding.ItemUserBinding
 
-//las clases llamadas adapter van a ser el intermediario para ir a la vista (tipo controlador)
+/*
+----------------------------------------------------------------
+las clases llamadas adapter van a ser el intermediario para ir a la vista (tipo controlador)
+----------------------------------------------------------------
+ */
+
 class UserAdapter(private val users: MutableList<User>,
-                  private val listener: OnClickListener) : //clase que recibe una list de usuarios y la interface con un evento
-     RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+                  private val listener: OnClickListener) :
+     RecyclerView.Adapter<UserAdapter.ViewHolder>() { //clase que recibe una list de usuarios, la interface con un evento
 
 
      private lateinit var context: Context //el "lateinir" indica que esa variable a a ser inicializada despues
@@ -33,7 +38,7 @@ class UserAdapter(private val users: MutableList<User>,
                binding.tvOrder.text =
                     (position + 1).toString() //aca en vez de cargar el id, se carga la posicion del objeto en la lista
                binding.tvName.text = user.getFullName()
-               Glide.with(context).load(user.url).diskCacheStrategy(DiskCacheStrategy.ALL)
+               Glide.with(context).load(user.url).diskCacheStrategy(DiskCacheStrategy.ALL)//Glide maneja imagenes
                     .centerCrop().circleCrop() //propiedad para que la imagen sea circular
                     .into(binding.imgPhoto) //cargar la imagen
 
