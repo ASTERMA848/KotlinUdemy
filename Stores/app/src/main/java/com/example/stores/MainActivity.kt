@@ -29,10 +29,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
           setContentView(mBinding.root)
 
           mBinding.btnSave.setOnClickListener { //se hace referencia al boton btnSave de la ActivityMainBinding || con setOnClickListener se le asigna un pyente al boton
-               val store = Store(
-                    name = mBinding.edName.text.toString()
-                         .trim() // aca se crea el objeto guardando el nombre que se escribe en edName del ActivityMainBinding ||el motodo trim ayuda a quitar espacios en blancos antes o despues del string
-               )
+               val store = StoreEntity(
+                    name = mBinding.edName.text.toString().trim()) // aca se crea el objeto guardando el nombre que se escribe en edName del ActivityMainBinding ||el motodo trim ayuda a quitar espacios en blancos antes o despues del string
+
+               Thread{
+                    StoreApplication.database.storeDao().addStores(store)
+               }.start()
+
                mAdapter.add(store) //esta linea agrega la tienda
           }
 
@@ -66,7 +69,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
    FUNCION QUE SE IMPLEMENTA AL TRAER LA interface OnClickListener
    -----------------------------------------------------------------------------------------------
     */
-     override fun onClick(store: Store) {
+     override fun onClick(storeEntity: StoreEntity) {
           TODO("Not yet implemented")
      }
 }

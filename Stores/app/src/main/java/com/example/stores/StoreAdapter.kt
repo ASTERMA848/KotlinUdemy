@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stores.databinding.ItemStoreBinding
 
-class StoreAdapter(private val stores: MutableList<Store>,
+class StoreAdapter(private val stores: MutableList<StoreEntity>,
                    private val listener: OnClickListener) //La clase OnClickListener se utiliza para escuchar los eventos de clic en una vista. Se puede usar para agregar una acción cuando el usuario hace clic en una vista, como abrir una nueva actividad, mostrar un mensaje o cambiar el estado de la vista.
      : RecyclerView.Adapter<StoreAdapter.viewHolder>() {
 
@@ -46,8 +46,8 @@ class StoreAdapter(private val stores: MutableList<Store>,
      METODO PARA AGREGAR LA TIENDA QUE VIENE DESDE EL edName del ActivityMainBinding
      ----------------------------------------------------------------
       */
-     fun add(store: Store) {
-          stores.add(store)
+     fun add(storeEntity: StoreEntity) {
+          stores.add(storeEntity)
           notifyDataSetChanged() // se refresca la vista del adaptador
      }
 
@@ -63,8 +63,8 @@ class StoreAdapter(private val stores: MutableList<Store>,
           val binding =
                ItemStoreBinding.bind(view) //ItemStoreBinding que se utiliza para enlazar los datos a la vista.
 
-          fun setListener(store: Store) { //Este método recibe un objeto Store como parámetro y lo utiliza para configurar un oyente en la vista
-               binding.root.setOnClickListener { listener.onClick(store) }
+          fun setListener(storeEntity: StoreEntity) { //Este método recibe un objeto Store como parámetro y lo utiliza para configurar un oyente en la vista
+               binding.root.setOnClickListener { listener.onClick(storeEntity) }
           }
      }
 
