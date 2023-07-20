@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                mutableListOf(), this
           ) //al poner this se pasa la "actividad" que es la que se implementa desde la interface OnClickListener
           mGridLayout = GridLayoutManager(
-               this, 4
+               this, 2
           ) // con this se le pasa el "contexto" seria la actividad desde la interface OnClickListener y en spanCount la cantidad de interface OnClickListener
 
           mBinding.recyclerView.apply {
