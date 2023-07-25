@@ -25,7 +25,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/btnSave"
         app:layout_constraintEnd_toStartOf="@+id/btnSave"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btnSave" />
+        app:layout_constraintTop_toTopOf="@+id/btnSave"
+        android:inputType="textCapWords"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
