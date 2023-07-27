@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
                ActivityMainBinding.inflate(layoutInflater) //inflamos el binding de la actividad. El binding es un objeto que nos permite acceder a los elementos de la interfaz de usuario de la actividad.
           setContentView(mBinding.root)
 
-          mBinding.btnSave.setOnClickListener { //se hace referencia al boton btnSave de la ActivityMainBinding || con setOnClickListener se le asigna un pyente al boton
+          /*
+  mBinding.btnSave.setOnClickListener { //se hace referencia al boton btnSave de la ActivityMainBinding || con setOnClickListener se le asigna un pyente al boton
                val store = StoreEntity(
                     name = mBinding.edName.text.toString().trim()
                ) // aca se crea el objeto guardando el nombre que se escribe en edName del ActivityMainBinding ||el motodo trim ayuda a quitar espacios en blancos antes o despues del string
@@ -40,6 +41,8 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
                mAdapter.add(store) //esta linea agrega la tienda
           }
+ */
+
 
           mBinding.fab.setOnClickListener { launchEditFragment() } //inflo la vista de fragment_edit_store
 
@@ -48,9 +51,21 @@ class MainActivity : AppCompatActivity(), OnClickListener {
 
      private fun launchEditFragment() {
           val fragment = EditStoreFragment() //Instancia de la clase EditStoreFragment()
-          val fragmentManager =
-               supportFragmentManager //supportFragmentManager es un gestor de android para controlar elementos del fragment
-          val fragmentTransaction = fragmentManager // decide como ejecutar el fragmentManager
+
+          /*
+          //supportFragmentManager es un gestor de android para controlar elementos del fragment
+           */
+          val fragmentManager = supportFragmentManager
+          val fragmentTransaction = fragmentManager.beginTransaction() // decide como ejecutar el fragmentManager
+
+          /*
+          Aca abajo se configura de una manera basica el lanzamianto de un fragment en Kotlin
+           */
+          fragmentTransaction.add(R.id.containerMain, fragment)
+          fragmentTransaction.commit() // aplicar cambios
+
+
+          mBinding.fab.hide() //cuando entre a la vista el boton fab va a desaparecer
 
      }
 
